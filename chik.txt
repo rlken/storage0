@@ -1,0 +1,72 @@
+//Punzalan, Ralph Kenneth G.
+public class Linked_List {
+    static class node {
+        int data;
+        node next;
+        node (int value) {
+            data = value;
+            next= null;
+        }
+    }
+    static node head;
+    static void printList() {
+        node p = head;
+        System.out.print("\n[");
+        while (p != null) {
+            System.out.print(" " + p.data + " ");
+            p = p.next;
+        }
+        System.out.print("]");
+    } //Punzalan, Ralph Kenneth G.
+     static void insertatend(int data) {
+        node lk = new node(data);
+        if (head == null) {
+            head = lk;
+            return;
+        }    
+        node LinkedList = head;
+        while(LinkedList.next != null) {
+        LinkedList = LinkedList.next;
+        }
+        LinkedList.next = lk;
+    }
+    
+    static void insertatbegin(int data) {
+        node lk = new node(data);
+        
+        lk.next = head;
+        head = lk;
+        }   
+    static void checker() {
+        node current = head;
+        int index = 0;
+        //Punzalan, Ralph Kenneth G.
+        while (current != null) {
+            node runner = current.next;
+            int currentIndex = index + 1;
+            
+            while (runner != null) {
+                if (current.data == runner.data) {
+                    System.out.print(" Duplicate " + current.data + " is in array index " + index + " and " + currentIndex);
+                }
+                runner = runner.next;
+                currentIndex++;
+            }
+            current = current.next;
+            index++;
+        }//Punzalan, Ralph Kenneth G.
+    }
+    public static void main(String args[]) {
+        int k=0;
+        insertatend(5);
+        insertatend(12);
+        insertatend(22);
+        insertatend(22);
+        insertatend(44);
+        insertatend(50);
+        System.out.print("Linked List; ");
+        printList();
+        
+        checker();
+    }
+}
