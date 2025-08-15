@@ -1,0 +1,135 @@
+import java.util.ArrayList;
+public class Linked_List {
+    static class node {
+        int data;
+        node next;
+        node(int value) {
+            data = value;
+            next = null;
+        }
+    }
+ 
+    static node head;
+    static node sortedHead;
+    static void printlist() {
+        node p = head;
+        System.out.print("\n[");
+        
+        while (p != null) {
+            System.out.print(" " + p.data + " ");
+            p = p.next;
+        }
+        System.out.print("]");
+    }
+    static void insertatbegin(int data) {
+        
+        node lk = new node(data);
+        
+        lk.next = head;
+        
+        head = lk;
+    }
+static void deleteAtBegin() {
+        if(head != null) {
+            head = head.next;
+        }
+    }
+static void deleteAtPosition(int position) {
+    if (position <= 0 || head == null) {
+        return;
+    }
+    if (position == 1) {
+        head = head.next;
+        return;
+    }
+    node current = head;
+    for (int i = 1; current != null && i < position - 1; i++) {
+        current = current.next;
+    }
+    if (current == null || current.next == null) {
+        return;
+    }
+    current.next = current.next.next;
+}
+static void insertAtPosition(int data, int position) {
+    node newNode = new node(data);
+    if (position <= 0) {
+        newNode.next = head;
+        head = newNode;
+        return;
+    }
+    node current = head;
+    for (int i = 1; current != null && i < position - 1; i++) {
+        current = current.next;
+    }
+    if (current == null) {
+        return;
+    }
+    newNode.next = current.next;
+    current.next = newNode;
+}
+
+static void sortedInsert(node newNode) {
+    if (sortedHead == null || newNode.data <= sortedHead.data) {
+        newNode.next = sortedHead;
+        sortedHead = newNode;
+    } else {
+        node current = sortedHead;
+        while (current.next != null && current.next.data < newNode.data) {
+            current = current.next;
+        }
+        newNode.next = current.next;
+        current.next = newNode;
+     }
+   }
+static void sortList() {
+    sortedHead = null;
+    node current = head;
+    
+    while (current != null) {
+        node next = current.next;
+        current.next = null;
+        sortedInsert(current);
+        current = next;
+    }
+    head = sortedHead;
+}
+public static void main(String[] args) {
+    Arraylist<String> arrlist = new Arraylist<String>();
+    insertatbegin(12);
+    insertatbegin(22);
+    insertatbegin(30);
+    insertatbegin(44);
+    insertatbegin(50);
+    insertatbegin(33);
+    
+    System.out.print("Linked List: ");
+    printlist();
+    
+    deleteAtBegin();
+    System.out.print("\nLinked List after deletion at beginning: ");
+    printlist();
+    
+    deleteAtPosition(2);
+    System.out.print("\nLinked List after deletion at position 3: ");
+    printlist();
+    
+    deleteAtPosition(4);
+    System.out.print("\nLinked List after deletion at position 6: ");
+    printlist();
+    
+    insertAtPosition(0, 2);
+    System.out.print("\nLinked List after inserting 0 at position 2: ");
+    printlist();
+    
+    sortList();
+    System.out.print("\nFinal Output: ");
+    printlist();
+    
+    arrList.add("0");
+    arrList.add("22");
+    arrList.add("30");
+    arrList.add("50");
+    arrList.add(3, "Ralph");
+    }
+}
