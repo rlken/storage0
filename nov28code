@@ -1,0 +1,75 @@
+CREATE TABLE Students (
+    Student_id INT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    Firstname VARCHAR(50) NOT NULL,
+    Lastname VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(100),
+    Role VARCHAR(20) DEFAULT 'student',
+    Phone_number VARCHAR(15)
+);
+
+CREATE TABLE Professors (
+    Professor_id INT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Department VARCHAR(100)
+);
+
+CREATE TABLE Courses (
+    Course_id INT PRIMARY KEY,
+    Title VARCHAR(100) NOT NULL,
+    Department VARCHAR(100),
+    Credits INT
+);
+
+CREATE TABLE Enrollment (
+    Enrollment_id INT PRIMARY KEY,
+    Student_id INT NOT NULL,
+    Course_id INT NOT NULL,
+
+    FOREIGN KEY (Student_id) REFERENCES Students(Student_id),
+    FOREIGN KEY (Course_id) REFERENCES Courses(Course_id)
+);
+
+CREATE TABLE Teaching (
+    Teaching_id INT PRIMARY KEY,
+    Professor_id INT NOT NULL,
+    Course_id INT NOT NULL,
+
+    FOREIGN KEY (Professor_id) REFERENCES Professors(Professor_id),
+    FOREIGN KEY (Course_id) REFERENCES Courses(Course_id)
+);
+
+
+INSERT INTO Students (Student_id, Username, Firstname, Lastname, Password, Email, Role, Phone_number)
+VALUES 
+(100, 'lewashed', 'Jared', 'Panget', 'lebronthegoat', 'jaredpanget@example.com', 'student', '555-1234'),
+(101, 'seven', 'Ranee', 'Melon', 'sevensano', 'ranee@example.com', 'student', '555-5678'),
+(102, 'brainrot', 'Riley', 'Qt', 'sixsevenbrainrot', 'riley67@example.com', 'student', '555-9876');
+
+INSERT INTO Professors (Professor_id, Name, Department)
+VALUES
+(200, 'Dr. Santos', 'Computer Science'),
+(201, 'Prof. Cruz', 'Mathematics');
+
+INSERT INTO Courses (Course_id, Title, Department, Credits)
+VALUES
+(500, 'Database Systems', 'Computer Science', 3),
+(501, 'Calculus I', 'Mathematics', 4);
+
+INSERT INTO Enrollment (Enrollment_id, Student_id, Course_id)
+VALUES
+(9000, 100, 500),
+(9001, 101, 500),
+(9002, 100, 501);
+
+INSERT INTO Teaching (Teaching_id, Professor_id, Course_id)
+VALUES
+(8000, 200, 500),
+(8001, 201, 501);
+
+SELECT * FROM Students;
+SELECT * FROM Professors;
+SELECT * FROM Courses;
+SELECT * FROM Enrollment;
+SELECT * FROM Teaching;
