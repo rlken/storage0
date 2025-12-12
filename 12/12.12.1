@@ -1,0 +1,61 @@
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT,
+    Grade DECIMAL(5,2)
+);
+
+INSERT INTO Students (FirstName, LastName, Age, Grade) VALUES
+('Ken', 'Punzalan', 20, 99.9),
+('Reeza', 'Vancuylenberg', 18, 99.0),
+('Jenna', 'Cruz', 19, 85.0),
+('Leo', 'Garcia', 20, 90.5),
+('Mira', 'Torres', 18, 95.3),
+('John', 'Reyes', 17, 76.0),
+('Paula', 'Dizon', 21, 89.1),
+('Riley', 'Saquing', 18, 91.4),
+('Rina', 'Chavez', 19, 80.0),
+('Chris', 'Rivera', 22, 87.5),
+('Ranee', 'Gutierrez', 20, 97.0),
+('Sean', 'Velasco', 18, 84.2),
+('Jared', 'Noel', 17, 93.8),
+('Jake', 'Mendoza', 19, 78.4),
+('Bea', 'Ferrer', 21, 88.0),
+('Carlo', 'Lim', 20, 94.7),
+('Diane', 'Co', 17, 90.1),
+('Fred', 'Alonzo', 18, 72.9),
+('Ivy', 'Cuenca', 19, 99.0),
+('Troy', 'Gonzales', 22, 65.3);
+
+
+SELECT * FROM Students;
+
+SELECT * FROM Students
+WHERE Age >= 18;
+
+SELECT AVG(Grade) AS Average_Grade
+FROM Students;
+
+UPDATE Students
+SET Grade = 88.1
+WHERE StudentID = 5;
+
+DELETE FROM Students
+WHERE StudentID = 0;
+
+SELECT COUNT(*) AS Total_Students
+FROM Students;
+
+SELECT * FROM Students
+WHERE Grade > 90;
+
+SELECT * FROM Students
+WHERE Age = 17
+   OR Grade > 90;
+
+SELECT MAX(Grade) AS Highest_Grade
+FROM Students;
+
+SELECT MIN(Grade) AS Lowest_Grade
+FROM Students;
