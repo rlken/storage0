@@ -1,0 +1,73 @@
+CREATE TABLE Employees (
+    Employee_ID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Salary INT,
+    Phone_Number VARCHAR(20)
+);
+
+INSERT INTO Employees (Employee_ID, FirstName, LastName, Salary, Phone_Number) VALUES
+(201, 'Reeza', 'Vancuylenberg', 42000, '09170011223'),
+(202, 'Ken', 'Punzalan', 61000, '09281234567'),
+(203, 'Darren', 'Espanto', 85000, '09390004567'),
+(204, 'Riley', 'Saquing', 26000, '09451239876'),
+(205, 'Jasper', 'Lim', 30000, '09563334455'),
+(206, 'Bea', 'Rivera', 94000, '09675556677');
+
+SELECT *
+FROM Employees
+WHERE Salary BETWEEN 40000 AND 80000;
+
+DROP TABLE IF EXISTS Orders;
+
+CREATE TABLE Orders (
+    Order_ID INT PRIMARY KEY,
+    Customer_ID INT,
+    OrderAmount INT
+);
+
+INSERT INTO Orders (Order_ID, Customer_ID, OrderAmount) VALUES
+(101, 5001, 1200),
+(102, 5001, 850),
+(103, 5002, 1500),
+(104, 5003, 600),
+(105, 5002, 950),
+(106, 5004, 400),
+(107, 5001, 2000);
+
+SELECT Customer_ID, COUNT(Order_ID) AS TotalOrders
+FROM Orders
+GROUP BY Customer_ID;
+
+ALTER TABLE Employees
+MODIFY Phone_Number VARCHAR(25);
+
+UPDATE Employees
+SET Phone_Number = '09012345678'
+WHERE Employee_ID = 201;
+
+DROP TABLE IF EXISTS Customers;
+
+CREATE TABLE Customers (
+    Customer_ID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Status VARCHAR(20)
+);
+
+ALTER TABLE Customers
+MODIFY Name VARCHAR(100);
+
+INSERT INTO Customers (Customer_ID, Name, Status) VALUES
+(5001, 'Alfred', 'Active'),
+(5002, 'Clarisse', 'Inactive'),
+(5003, 'Noah', 'Active'),
+(5004, 'Trixie', 'Inactive'),
+(5005, 'Gio', 'Active');
+
+DELETE FROM Customers
+WHERE Status = 'Inactive';
+
+SELECT *
+FROM Employees
+ORDER BY Salary DESC
+LIMIT 5;
